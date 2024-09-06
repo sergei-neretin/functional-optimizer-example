@@ -9,7 +9,7 @@ import edu.nstu.functionaloptimizerexample.math.Vector;
 import java.util.Random;
 
 public class MinimizerMonteCarlo implements IOptimizator {
-    private static final int MAXITER = 100000;
+    private static final int MAX_ITER = 100000;
     @Override
     public IVector minimize(
             IFunctional objective,
@@ -18,22 +18,21 @@ public class MinimizerMonteCarlo implements IOptimizator {
             IVector minimumParameters,
             IVector maximumParameters) {
         IVector param = new Vector();
-        IVector minparam = new Vector();
+        IVector minParam = new Vector();
         param.addAll(initialParameters);
-        minparam.addAll(initialParameters);
+        minParam.addAll(initialParameters);
         IFunction fun = function.bind(param);
         double currentmin = objective.value(fun);
         Random rand = new Random(0);
-        for (int i = 0; i < MAXITER; i++) {
-            for (int j = 0; j < param.size(); j++)
-                param.set(j, rand.nextDouble());
+        for (int i = 0; i < MAX_ITER; i++) {
+            param.replaceAll(ignored -> rand.nextDouble());
             double f = objective.value(function.bind(param));
             if (f < currentmin) {
                 currentmin = f;
                 for (int j = 0; j < param.size(); j++)
-                    minparam.set(j, param.get(j));
+                    minParam.set(j, param.get(j));
             }
         }
-        return minparam;
+        return minParam;
     }
 }
