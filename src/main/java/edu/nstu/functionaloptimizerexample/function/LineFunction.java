@@ -5,8 +5,7 @@ import edu.nstu.functionaloptimizerexample.math.IVector;
 
 public class LineFunction implements IParametricFunction {
 
-    // Внутренний класс
-    private class InternalLineFunction implements IFunction {
+    private static class InternalLineFunction implements IFunction {
         private double a;
         private double b;
 
