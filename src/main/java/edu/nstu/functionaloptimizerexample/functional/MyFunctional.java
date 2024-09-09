@@ -15,7 +15,7 @@ public class MyFunctional implements IFunctional {
         double sum = 0;
         for (Point point : points) {
             Vector param = new Vector();
-            param.add(point.getX());
+            param.add((Double) point.getX());
             double s = function.value(param) - point.getY();
             sum += s * s;
         }

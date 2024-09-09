@@ -7,5 +7,5 @@ import lombok.*;
 @Data
 @Builder
 public class Point {
-    private double x, y;
+    private Double x, y;
 }
